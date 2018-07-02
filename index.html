@@ -15,7 +15,6 @@
 <script>
 // wait html load
 window.addEventListener('load', init);
-window.addEventListener('load', loadMap);
 
 function init() {
   // set size
@@ -51,16 +50,22 @@ function init() {
   // create floor
   const floor = new Floor();
   floor.mesh.position.set(0,-5,0);
+  
+  // create minimap
+  const minimap = new MiniMap();
 
   // loop event
   tick();
 
   // one frame process
   function tick() {
+    minimap.clearMiniMap();
     for (let obj of GameObjectTbl) {
       obj.update();
       player.hitCheck(obj);
+      minimap.drawObj(minimap.convertMapPosX(obj.pos.x), minimap.convertMapPosY(obj.pos.z));
     }
+    //minimap.drawPlayer(player.pos.x, player.pos.y);
 
     camera.position.set(player.pos.x, player.pos.y, player.pos.z);
     camera.lookAt(player.getLookAtVector());
@@ -68,6 +73,9 @@ function init() {
     // rendering
     renderer.render(scene, camera);
     requestAnimationFrame(tick);
+    
+    // draw minimap
+    //minimap.drawMiniMap(minimap.convertMapPosX(player.pos.x), minimap.convertMapPosY(player.pos.z));
   }
 }
 </script>
