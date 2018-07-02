@@ -63,9 +63,8 @@ function init() {
     for (let obj of GameObjectTbl) {
       obj.update();
       player.hitCheck(obj);
-      minimap.drawObj(minimap.convertMapPosX(obj.pos.x), minimap.convertMapPosY(obj.pos.z));
+      minimap.drawObj(obj);
     }
-    //minimap.drawPlayer(player.pos.x, player.pos.y);
 
     camera.position.set(player.pos.x, player.pos.y, player.pos.z);
     camera.lookAt(player.getLookAtVector());
@@ -73,9 +72,6 @@ function init() {
     // rendering
     renderer.render(scene, camera);
     requestAnimationFrame(tick);
-    
-    // draw minimap
-    //minimap.drawMiniMap(minimap.convertMapPosX(player.pos.x), minimap.convertMapPosY(player.pos.z));
   }
 }
 </script>
