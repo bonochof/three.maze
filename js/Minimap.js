@@ -2,6 +2,8 @@ class MiniMap {
   constructor() {
     this.cv = document.getElementById('miniMap');
     this.ct = this.cv.getContext('2d');
+    this.input_key = new InputKeyboard();
+    this.drawFlag = true;
   }
 
   convertMapPosX(playerX) {
@@ -10,6 +12,13 @@ class MiniMap {
 
   convertMapPosY(playerY) {
     return playerY + 50 * 1.5;
+  }
+
+  update() {
+    const SHIFT_KEY = 16;     // Shift
+
+    this.drawFlag = this.input_key.isDown(SHIFT_KEY);
+    //this.drawFlag = true;
   }
 
   clearMiniMap() {
