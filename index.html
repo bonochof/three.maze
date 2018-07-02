@@ -10,10 +10,12 @@
 <script src="js/Wall.js"></script>  
 <script src="js/Floor.js"></script>
 <script src="js/InitMap.js"></script>
+<script src="js/MiniMap.js"></script>
 
 <script>
 // wait html load
 window.addEventListener('load', init);
+window.addEventListener('load', loadMap);
 
 function init() {
   // set size
@@ -71,6 +73,7 @@ function init() {
 </script>
 </head>
 <body>
-<canvas id="myCanvas"></canvas>
+<canvas id="myCanvas" style="position:fixed; top:0px; left:0px; width:960; height:540; z-index: 1; background-color: #000000;"></canvas>
+<canvas id="miniMap" style="position:fixed; top:260px; left:10px; width:260px; height:260px; z-index: 2; background-color:rgba(0,0,0,0);"></canvas>
 </body>
 </html>
