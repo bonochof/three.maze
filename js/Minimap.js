@@ -26,19 +26,16 @@ class MiniMap {
     this.ct.strokeRect(0, 0, this.cv.width, this.cv.height);
   }
 
-  drawObj(x, y) {
+  drawObj(obj) {
+    let x = this.convertMapPosX(obj.pos.x);
+    let y = this.convertMapPosY(obj.pos.z);
     this.ct.globalAlpha = 1.0;
 
-    this.ct.fillStyle = '#ccccff';
+    if(obj.mesh === undefined || obj.mesh.geometry.boundingBox == null){
+      this.ct.fillStyle = '#ff6666';
+    } else {
+      this.ct.fillStyle = '#ccccff';
+    }
     this.ct.fillRect(x, y, 24, 10);
-  }
-
-  drawPlayer(x, y) {
-    this.ct.globalAlpha = 1.0;
-
-    this.ct.beginPath();
-    this.ct.arc(x, y, 5, 0, Math.PI*2, true);
-    this.ct.fillStyle = '#ff8888';
-    this.ct.fill();
   }
 }
