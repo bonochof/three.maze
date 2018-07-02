@@ -59,11 +59,14 @@ function init() {
 
   // one frame process
   function tick() {
+    minimap.update();
     minimap.clearMiniMap();
     for (let obj of GameObjectTbl) {
       obj.update();
       player.hitCheck(obj);
-      minimap.drawObj(obj);
+      if (minimap.drawFlag) {
+        minimap.drawObj(obj);
+      }
     }
 
     camera.position.set(player.pos.x, player.pos.y, player.pos.z);
