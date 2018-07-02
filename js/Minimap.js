@@ -15,7 +15,7 @@ class MiniMap {
   }
 
   update() {
-    const SHIFT_KEY = 16;     // Shift
+    const SHIFT_KEY = 16;  // Shift
 
     this.drawFlag = this.input_key.isDown(SHIFT_KEY);
     //this.drawFlag = true;
@@ -40,7 +40,7 @@ class MiniMap {
     let y = this.convertMapPosY(obj.pos.z);
     this.ct.globalAlpha = 1.0;
 
-    if(obj.mesh === undefined || obj.mesh.geometry.boundingBox == null){
+    if (obj.mesh === undefined || obj.mesh.geometry.boundingBox == null) {
       this.ct.fillStyle = '#ff6666';
     } else {
       this.ct.fillStyle = '#ccccff';

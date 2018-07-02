@@ -9,19 +9,19 @@ const scene = new THREE.Scene();
 
 class GameObject{
   constructor() {
-        GameObjectTbl.push(this);
-        this.pos = new THREE.Vector3(0,0,0);
-    }
+    GameObjectTbl.push(this);
+    this.pos = new THREE.Vector3(0, 0, 0);
+  }
 
-    //更新
-    update(){
-    }
+  //更新
+  update() {
+  }
 
-    //初期化
-    start(){
-    }
+  //初期化
+  start() {
+  }
 
-    //ヒットした
-    onHit(player, hitPoint){
-    }
+  //ヒットした
+  onHit(player, hitPoint) {
+  }
 }
