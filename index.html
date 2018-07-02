@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<script src="js/InputKeyboard.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"></script>
+<script src="js/GameUtil.js"></script>
+<script src="js/GameObject.js"></script>
+<script src="js/Player.js"></script>
+<script src="js/Wall.js"></script>  
+<script src="js/Floor.js"></script>
+<script src="js/InitMap.js"></script>
+
+<script>
+// wait html load
+window.addEventListener('load', init);
+
+function init() {
+  // set size
+  const width = 960;
+  const height = 540;
+
+  // create renderer
+  const renderer = new THREE.WebGLRenderer({
+    canvas: document.querySelector('#myCanvas'),
+  });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(width, height);
+  renderer.setClearColor(0xF9F9F9, 1.0);
+
+  // create camera
+  const camera = new THREE.PerspectiveCamera(45, width / height);
+
+  // create light
+  const light = new THREE.DirectionalLight(0xFFFFFF, 1);
+  light.position.set(1, 1, 1);
+  scene.add(light);
+
+  const light2 = new THREE.HemisphereLight(0x888888, 0x0000FF, 1.0);
+  scene.add(light2);
+
+  // initialize map
+  InitMap();
+
+  // create player
+  let player = new Player();
+  player.start(new THREE.Vector3(25, 4, 25));
+
+  // create floor
+  const floor = new Floor();
+  floor.mesh.position.set(0,-5,0);
+
+  // loop event
+  tick();
+
+  // one frame process
+  function tick() {
+    for (let obj of GameObjectTbl) {
+      obj.update();
+      player.hitCheck(obj);
+    }
+
+    camera.position.set(player.pos.x, player.pos.y, player.pos.z);
+    camera.lookAt(player.getLookAtVector());
+
+    // rendering
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }
+}
+</script>
+</head>
+<body>
+<canvas id="myCanvas"></canvas>
+</body>
+</html>
