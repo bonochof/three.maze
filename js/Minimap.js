@@ -57,6 +57,10 @@ class MiniMap {
       this.ct.fillStyle = '#ff6666';
       sizeX = 10;
       sizeY = 10;
+    } else if (obj.isItem) {
+      this.ct.fillStyle = '#338833';
+      sizeX = 10;
+      sizeY = 10;
     } else {
       this.ct.fillStyle = '#ccccff';
     }

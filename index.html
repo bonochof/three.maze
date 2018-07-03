@@ -11,6 +11,7 @@
 <script src="js/Floor.js"></script>
 <script src="js/InitMap.js"></script>
 <script src="js/MiniMap.js"></script>
+<script src="js/JumpItem.js"></script>
 
 <script>
 // wait html load
@@ -42,6 +43,10 @@ function init() {
 
   // initialize map
   InitMap();
+
+  // create item
+  let jumpitem = new JumpItem();
+  jumpitem.start(new THREE.Vector3(152, 2, 15));
 
   // create player
   let player = new Player();
