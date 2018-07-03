@@ -7,6 +7,7 @@
 <script src="js/GameUtil.js"></script>
 <script src="js/GameObject.js"></script>
 <script src="js/Player.js"></script>
+<script src="js/Other.js"></script>
 <script src="js/Wall.js"></script>  
 <script src="js/Floor.js"></script>
 <script src="js/InitMap.js"></script>
@@ -59,6 +60,10 @@ function init() {
   // create player
   let player = new Player();
   player.start(new THREE.Vector3(148, 4, 38));
+
+  // create other player
+  let other = new Other();
+  other.start(new THREE.Vector3(123, 4, 38));
 
   // create floor
   const floor = new Floor();
