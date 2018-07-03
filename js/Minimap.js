@@ -53,7 +53,6 @@ class MiniMap {
     this.ct.globalAlpha = 1.0;
 
     // player
-    //if (obj.mesh === undefined || obj.mesh.geometry.boundingBox == null) {
     if (obj.objID == PLAYER) {
       this.ct.fillStyle = '#ff6666';
       sizeX = 10;

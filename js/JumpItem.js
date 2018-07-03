@@ -6,9 +6,9 @@ class JumpItem extends GameObject {
     this.isVisible = true;
     this.mesh = new THREE.Mesh(
       new THREE.SphereGeometry(2),
-      //new THREE.BoxGeometry(2, 2, 2),
       new THREE.MeshStandardMaterial({color: 0x33ff33, roughness: 0.0})
     );
+    // create BBAA
     this.mesh.geometry.computeBoundingBox();
     HitCheckTbl.push(this);
     scene.add(this.mesh);
@@ -21,6 +21,7 @@ class JumpItem extends GameObject {
     this.mesh.position.set(this.pos.x, this.pos.y, this.pos.z);
   }
 
+  // move updown
   update() {
     this.pos.y += this.dir;
     if (this.pos.y < 1 || this.pos.y > 4) {

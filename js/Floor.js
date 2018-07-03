@@ -7,15 +7,18 @@ class Floor extends GameObject {
       new THREE.BoxGeometry(2000, 1, 2000),
       new THREE.MeshStandardMaterial({color: 0x00FFFF, roughness: 0.0})
     );
-    this.mesh.geometry.computeBoundingBox();  //BBAA作成
+    // create BBAA
+    this.mesh.geometry.computeBoundingBox();
     HitCheckTbl.push(this);
     scene.add(this.mesh);
   }
 
-  //ヒットした
-  onHit(player, hitPoint){
-    let dir = player.pos.clone().sub(hitPoint);            //ヒットした壁の点からプレイヤー方向のベクトルを生成
-    let k = player.sphere.radius - dir.length() + 0.001;      //壁にめり込んだ分の長さを生成(少し大きめに補正)
+  // hit
+  onHit(player, hitPoint) {
+    // create vector (hitPoint to player)
+    let dir = player.pos.clone().sub(hitPoint);
+    // calc length
+    let k = player.sphere.radius - dir.length() + 0.001;
     dir.normalize();
     player.setPos(player.pos.clone().add(dir.clone().multiplyScalar(k)));
     if (dir.dot(new THREE.Vector3(0, 1, 0)) > 0.99) {
