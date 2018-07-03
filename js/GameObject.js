@@ -7,6 +7,12 @@ const HitCheckTbl = new Array();
 // シーンを作成
 const scene = new THREE.Scene();
 
+// object ID
+const FLOOR  = 0;
+const WALL   = 1;
+const PLAYER = 2;
+const ITEM   = 3;
+
 class GameObject{
   constructor() {
     GameObjectTbl.push(this);
