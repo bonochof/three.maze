@@ -1,6 +1,7 @@
 class Player extends GameObject{
   constructor() {
     super();
+    this.objID = PLAYER;
     this.isVisible = true;
     this.y_rot_speed = 3;
     this.move_speed = 0.5;
@@ -9,7 +10,7 @@ class Player extends GameObject{
     this.sphere = new THREE.Sphere( new THREE.Vector3( 0, 0, 0 ), 2);    //当たり判定用の球
     this.oldPos =this.pos.clone();
     this.y_speed = 0;
-    this.jumpCount = 3;
+    this.jumpCount = 0;
   }
 
   start(pos) {
@@ -78,13 +79,22 @@ class Player extends GameObject{
   }
     
   hitCheck(obj) {
+    let min, max;
+
     // player
-    if (obj.mesh === undefined || obj.mesh.geometry.boundingBox == null) {
+    if (obj.objID == PLAYER || obj.mesh.geometry.boundingBox == null || obj.mesh.geometry.boundingSphere == null) {
       return;
     }
-    // object
-    let min = GameUtil.toWorldPoint(obj.pos,obj.mesh.geometry.boundingBox.min);
-    let max = GameUtil.toWorldPoint(obj.pos,obj.mesh.geometry.boundingBox.max);
+
+    // floor or wall
+    if (obj.objID == FLOOR || obj.objID == WALL) {
+      min = GameUtil.toWorldPoint(obj.pos, obj.mesh.geometry.boundingBox.min);
+      max = GameUtil.toWorldPoint(obj.pos, obj.mesh.geometry.boundingBox.max);
+    // item
+    } else if (obj.objID == ITEM) {
+      min = GameUtil.toWorldPoint(obj.pos, obj.mesh.geometry.boundingSphere.min);
+      max = GameUtil.toWorldPoint(obj.pos, obj.mesh.geometry.boundingSphere.max);
+    }
     let nearPoint = GameUtil.calcNearPointOnAABB(this.sphere.center, min, max);
     let length = nearPoint.distanceTo(this.pos);
     if (length < this.sphere.radius) {
