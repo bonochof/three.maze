@@ -27,7 +27,7 @@ class MiniMap {
     this.centerY = pos.z;
 
     if (this.input_key.isDown(POS_KEY)) {
-      console.log(pos.x, pos.z);
+      console.log(pos);
     }
   }
 
