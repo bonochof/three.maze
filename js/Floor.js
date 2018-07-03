@@ -7,7 +7,7 @@ class Floor extends GameObject {
       new THREE.BoxGeometry(2000, 1, 2000),
       new THREE.MeshStandardMaterial({color: 0x00FFFF, roughness: 0.0})
     );
-    // create BBAA
+    // create AABB
     this.mesh.geometry.computeBoundingBox();
     HitCheckTbl.push(this);
     scene.add(this.mesh);

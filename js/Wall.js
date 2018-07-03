@@ -7,7 +7,7 @@ class Wall extends GameObject {
       new THREE.BoxGeometry(10, 10, 10),
       new THREE.MeshStandardMaterial({color: 0xFFFFFF, roughness: 0.0})
     );
-    // create BBAA
+    // create AABB
     this.mesh.geometry.computeBoundingBox();
     HitCheckTbl.push(this);
     scene.add(this.mesh);

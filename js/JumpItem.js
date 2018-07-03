@@ -8,7 +8,7 @@ class JumpItem extends GameObject {
       new THREE.SphereGeometry(2),
       new THREE.MeshStandardMaterial({color: 0x33ff33, roughness: 0.0})
     );
-    // create BBAA
+    // create AABB
     this.mesh.geometry.computeBoundingBox();
     HitCheckTbl.push(this);
     scene.add(this.mesh);
