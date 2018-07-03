@@ -4,21 +4,26 @@ class MiniMap {
     this.ct = this.cv.getContext('2d');
     this.input_key = new InputKeyboard();
     this.drawFlag = true;
+    this.centerX = 0;
+    this.centerY = 0;
   }
 
-  convertMapPosX(playerX) {
-    return (playerX + 60) * 2.3;
+  convertMapPosX(x) {
+    return (x + 70 - this.centerX) * 2;
   }
 
-  convertMapPosY(playerY) {
-    return playerY + 50 * 1.5;
+  convertMapPosY(y) {
+    return (y + 30 - this.centerY) * 2;
   }
 
-  update() {
+  update(pos) {
     const SHIFT_KEY = 16;  // Shift
 
     this.drawFlag = this.input_key.isDown(SHIFT_KEY);
     this.drawFlag = true;
+
+    this.centerX = pos.x;
+    this.centerY = pos.z;
   }
 
   clearMiniMap() {
@@ -38,13 +43,18 @@ class MiniMap {
   drawObj(obj) {
     let x = this.convertMapPosX(obj.pos.x);
     let y = this.convertMapPosY(obj.pos.z);
+    let sizeX = 20;
+    let sizeY = 20;
     this.ct.globalAlpha = 1.0;
 
+    // player
     if (obj.mesh === undefined || obj.mesh.geometry.boundingBox == null) {
       this.ct.fillStyle = '#ff6666';
+      sizeX = 10;
+      sizeY = 10;
     } else {
       this.ct.fillStyle = '#ccccff';
     }
-    this.ct.fillRect(x, y, 24, 10);
+    this.ct.fillRect(x, y, sizeX, sizeY);
   }
 }

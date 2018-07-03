@@ -59,7 +59,7 @@ function init() {
 
   // one frame process
   function tick() {
-    minimap.update();
+    minimap.update(player.pos);
     minimap.clearMiniMap();
     for (let obj of GameObjectTbl) {
       obj.update();
@@ -81,6 +81,6 @@ function init() {
 </head>
 <body>
 <canvas id="myCanvas" style="position:fixed; top:0px; left:0px; width:960; height:540; z-index: 1; background-color: #000000;"></canvas>
-<canvas id="miniMap" style="position:fixed; top:260px; left:10px; width:260px; height:260px; z-index: 2; background-color:rgba(0,0,0,0);"></canvas>
+<canvas id="miniMap" style="position:fixed; top:340px; left:10px; width:160px; height:160px; z-index: 2; background-color:rgba(0,0,0,0);"></canvas>
 </body>
 </html>
