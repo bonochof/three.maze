@@ -18,12 +18,17 @@ class MiniMap {
 
   update(pos) {
     const SHIFT_KEY = 16;  // Shift
+    const POS_KEY = 80;    // P
 
     this.drawFlag = this.input_key.isDown(SHIFT_KEY);
     this.drawFlag = true;
 
     this.centerX = pos.x;
     this.centerY = pos.z;
+
+    if (this.input_key.isDown(POS_KEY)) {
+      console.log(pos.x, pos.z);
+    }
   }
 
   clearMiniMap() {
