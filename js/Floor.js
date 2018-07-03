@@ -1,6 +1,7 @@
 class Floor extends GameObject {
   constructor() {
     super();
+    this.isVisible = false;
     this.mesh = new THREE.Mesh(
       new THREE.BoxGeometry(2000, 1, 2000),
       new THREE.MeshStandardMaterial({color: 0x00FFFF, roughness: 0.0}));

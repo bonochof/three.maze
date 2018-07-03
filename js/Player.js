@@ -1,6 +1,7 @@
 class Player extends GameObject{
   constructor() {
     super();
+    this.isVisible = true;
     this.y_rot_speed = 3;
     this.move_speed = 0.5;
     this.forward = new THREE.Vector3( 1, 0, 0 );

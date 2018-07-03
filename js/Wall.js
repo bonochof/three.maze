@@ -1,6 +1,7 @@
 class Wall extends GameObject {
   constructor() {
     super();
+    this.isVisible = true;
     this.mesh = new THREE.Mesh(
       new THREE.BoxGeometry(10, 10, 10),
       new THREE.MeshStandardMaterial({color: 0xFFFFFF, roughness: 0.0}));
