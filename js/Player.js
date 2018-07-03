@@ -9,6 +9,7 @@ class Player extends GameObject{
     this.sphere = new THREE.Sphere( new THREE.Vector3( 0, 0, 0 ), 2);    //当たり判定用の球
     this.oldPos =this.pos.clone();
     this.y_speed = 0;
+    this.jumpCount = 3;
   }
 
   start(pos) {
@@ -57,9 +58,10 @@ class Player extends GameObject{
       this.forward.applyAxisAngle(new THREE.Vector3(0, -1, 0), this.y_rot_speed*Math.PI/180.0);
     }
 
-    if (this.input_key.isDown(JUMP_KEY)) {
+    if (this.input_key.isDown(JUMP_KEY) && this.jumpCount > 0) {
       if (this.y_speed == 0) {
         this.y_speed = 2;
+        this.jumpCount--;
       }
     }
 
@@ -76,9 +78,11 @@ class Player extends GameObject{
   }
     
   hitCheck(obj) {
+    // player
     if (obj.mesh === undefined || obj.mesh.geometry.boundingBox == null) {
       return;
     }
+    // object
     let min = GameUtil.toWorldPoint(obj.pos,obj.mesh.geometry.boundingBox.min);
     let max = GameUtil.toWorldPoint(obj.pos,obj.mesh.geometry.boundingBox.max);
     let nearPoint = GameUtil.calcNearPointOnAABB(this.sphere.center, min, max);
