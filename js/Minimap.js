@@ -3,7 +3,6 @@ class MiniMap {
     this.cv = document.getElementById('miniMap');
     this.ct = this.cv.getContext('2d');
     this.input_key = new InputKeyboard();
-    this.drawFlag = true;
     this.centerX = 0;
     this.centerY = 0;
   }

@@ -12,6 +12,7 @@ class Player extends GameObject {
     this.oldPos =this.pos.clone();
     this.y_speed = 0;
     this.jumpCount = 1;
+    this.mapCount = 0;
   }
 
   start(pos) {
@@ -70,6 +71,10 @@ class Player extends GameObject {
     this.y_speed -= (9.8 / 120);
     currentPos.y += this.y_speed;
     this.updatePos(currentPos);
+
+    if (this.mapCount > 0) {
+      this.mapCount--;
+    }
   }
 
   // get lool point

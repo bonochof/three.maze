@@ -12,6 +12,7 @@
 <script src="js/InitMap.js"></script>
 <script src="js/MiniMap.js"></script>
 <script src="js/JumpItem.js"></script>
+<script src="js/MapItem.js"></script>
 
 <script>
 // wait html load
@@ -48,6 +49,9 @@ function init() {
   let jumpitem = new JumpItem();
   jumpitem.start(new THREE.Vector3(152, 2, 15));
 
+  let mapitem = new MapItem();
+  mapitem.start(new THREE.Vector3(106, 2, 34));
+
   // create player
   let player = new Player();
   player.start(new THREE.Vector3(148, 4, 38));
@@ -69,7 +73,7 @@ function init() {
     for (let obj of GameObjectTbl) {
       obj.update();
       player.hitCheck(obj);
-      if (minimap.drawFlag && obj.isVisible) {
+      if (player.mapCount > 0 && obj.isVisible) {
         minimap.drawObj(obj);
       }
     }
