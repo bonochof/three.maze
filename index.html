@@ -13,6 +13,7 @@
 <script src="js/MiniMap.js"></script>
 <script src="js/JumpItem.js"></script>
 <script src="js/MapItem.js"></script>
+<script src="js/SpeedItem.js"></script>
 
 <script>
 // wait html load
@@ -51,6 +52,9 @@ function init() {
 
   let mapitem = new MapItem();
   mapitem.start(new THREE.Vector3(106, 2, 34));
+
+  let speeditem = new SpeedItem();
+  speeditem.start(new THREE.Vector3(168, 2, 7));
 
   // create player
   let player = new Player();
