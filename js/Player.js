@@ -10,7 +10,7 @@ class Player extends GameObject{
     this.sphere = new THREE.Sphere( new THREE.Vector3( 0, 0, 0 ), 2);    //当たり判定用の球
     this.oldPos =this.pos.clone();
     this.y_speed = 0;
-    this.jumpCount = 0;
+    this.jumpCount = 1;
   }
 
   start(pos) {
