@@ -79,22 +79,14 @@ class Player extends GameObject{
   }
     
   hitCheck(obj) {
-    let min, max;
-
     // player
     if (obj.objID == PLAYER || obj.mesh.geometry.boundingBox == null || obj.mesh.geometry.boundingSphere == null) {
       return;
     }
 
-    // floor or wall
-    if (obj.objID == FLOOR || obj.objID == WALL) {
-      min = GameUtil.toWorldPoint(obj.pos, obj.mesh.geometry.boundingBox.min);
-      max = GameUtil.toWorldPoint(obj.pos, obj.mesh.geometry.boundingBox.max);
-    // item
-    } else if (obj.objID == ITEM) {
-      min = GameUtil.toWorldPoint(obj.pos, obj.mesh.geometry.boundingSphere.min);
-      max = GameUtil.toWorldPoint(obj.pos, obj.mesh.geometry.boundingSphere.max);
-    }
+    // other object
+    let min = GameUtil.toWorldPoint(obj.pos, obj.mesh.geometry.boundingBox.min);
+    let max = GameUtil.toWorldPoint(obj.pos, obj.mesh.geometry.boundingBox.max);
     let nearPoint = GameUtil.calcNearPointOnAABB(this.sphere.center, min, max);
     let length = nearPoint.distanceTo(this.pos);
     if (length < this.sphere.radius) {
