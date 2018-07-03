@@ -18,7 +18,7 @@ class MiniMap {
     const SHIFT_KEY = 16;  // Shift
 
     this.drawFlag = this.input_key.isDown(SHIFT_KEY);
-    //this.drawFlag = true;
+    this.drawFlag = true;
   }
 
   clearMiniMap() {
