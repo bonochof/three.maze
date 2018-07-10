@@ -15,10 +15,13 @@
 <script src="js/JumpItem.js"></script>
 <script src="js/MapItem.js"></script>
 <script src="js/SpeedItem.js"></script>
+<script src="js/Connect.js"></script>
 
 <script>
 // wait html load
 window.addEventListener('load', init);
+
+var connection = new WebSocket('');
 
 function init() {
   // set size
@@ -43,6 +46,13 @@ function init() {
 
   const light2 = new THREE.HemisphereLight(0x888888, 0x0000FF, 1.0);
   scene.add(light2);
+
+  // connect server
+  const req = new XMLHttpRequest();
+  req.open("GET");
+  req.onreadystatechange = function() {
+    var res = document
+  }
 
   // initialize map
   InitMap();
@@ -93,6 +103,9 @@ function init() {
     // rendering
     renderer.render(scene, camera);
     requestAnimationFrame(tick);
+
+    // send server
+    sendPos();
   }
 }
 </script>
