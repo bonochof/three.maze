@@ -1,5 +1,5 @@
 var url = "";
-const connection = new WebSocket(url, "rust-websocket");
+var connection = new WebSocket(url, "rust-websocket");
 var playerPos = [0, 0, 0];
 var otherPos = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
@@ -27,7 +27,7 @@ function onMessage(message) {
 
 function sendPos(pos) {
   let posArr = [pos.x, pos.y, pos.z];
-  let data = JSON.stringfy(posArr)
+  let data = JSON.stringify(posArr)
   connection.send(data);
   console.log(data);
 }
