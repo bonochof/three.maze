@@ -24,7 +24,8 @@ function onMessage(message) {
 }
 
 function sendPos(pos) {
-  let data = JSON.stringfy(pos)
+  let posArr = [pos.x, pos.y, pos.z];
+  let data = JSON.stringfy(posArr)
   connection.send(data);
   console.log(data);
 }
