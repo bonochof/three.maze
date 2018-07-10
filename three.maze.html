@@ -60,11 +60,14 @@ function init() {
 
   // create player
   let player = new Player();
-  player.start(new THREE.Vector3(148, 4, 38));
+  player.start(new THREE.Vector3(playerPos[0], playerPos[1], playerPos[2]));
 
   // create other player
-  let other = new Other();
-  other.start(new THREE.Vector3(123, 4, 38));
+  let other = new Array(3);
+  for (i = 0; i < other.length; i++) {
+    other[i] = new Other();
+    other[i].start(new THREE.Vector3(otherPos[i][0], otherPos[i][1], otherPos[i][2]));
+  }
 
   // create floor
   const floor = new Floor();

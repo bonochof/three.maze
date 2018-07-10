@@ -1,5 +1,7 @@
 var url = "";
 const connection = new WebSocket(url, "rust-websocket");
+var playerPos = [0, 0, 0];
+var otherPos = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
 connection.onopen = onOpen;
 connection.onclose = onClose;
