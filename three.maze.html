@@ -21,8 +21,6 @@
 // wait html load
 window.addEventListener('load', init);
 
-var connection = new WebSocket('');
-
 function init() {
   // set size
   const width = 960;
@@ -46,13 +44,6 @@ function init() {
 
   const light2 = new THREE.HemisphereLight(0x888888, 0x0000FF, 1.0);
   scene.add(light2);
-
-  // connect server
-  const req = new XMLHttpRequest();
-  req.open("GET");
-  req.onreadystatechange = function() {
-    var res = document
-  }
 
   // initialize map
   InitMap();
