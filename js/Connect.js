@@ -23,6 +23,9 @@ function onError(error) {
 function onMessage(message) {
   let data = JSON.parse(message.data);
   console.log(data);
+  //other.pos.x = data.other01.x;
+  //other.pos.y = data.other01.y;
+  //other.pos.z = data.other01.z;
 }
 
 function sendPos(pos) {
