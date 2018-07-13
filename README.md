@@ -1,2 +1,2 @@
 # three.maze
-The online maze game using three.js
+Online maze game using [three.js](https://threejs.org)
