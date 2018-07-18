@@ -2,6 +2,7 @@ class MapItem extends GameObject {
   constructor() {
     super();
     this.objID = ITEM;
+    this.itemID = 0;
     this.isGot = false;
     this.isVisible = true;
     this.mesh = new THREE.Mesh(
@@ -39,6 +40,7 @@ class MapItem extends GameObject {
       this.isVisible = false;
       player.mapCount = 3000;
       this.isGot = true;
+      sendMessage(player.pos, this.itemID);
     }
   }
 }

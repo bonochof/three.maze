@@ -2,6 +2,7 @@ class JumpItem extends GameObject {
   constructor() {
     super();
     this.objID = ITEM;
+    this.itemID = 0;
     this.isGot = false;
     this.isVisible = true;
     this.mesh = new THREE.Mesh(
