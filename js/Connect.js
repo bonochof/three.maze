@@ -1,7 +1,9 @@
-var url = "";
-var connection = new WebSocket(url, "rust-websocket");
-var playerPos = [0, 4, 0];
-var otherPos = [[0, 4, 0], [0, 4, 0], [0, 4, 0]];
+var connection = new WebSocket("ws://192.168.0.21:2794", "rust-websocket");
+var initFlag = true;
+var playerID = 0;
+var playerPos = [[0, 4, 0], [0, 4, 0], [0, 4, 0], [0, 4, 0]];
+var itemType = new Array();
+var itemPos = new Array();
 
 connection.onopen = onOpen;
 connection.onclose = onClose;
@@ -23,14 +25,24 @@ function onError(error) {
 function onMessage(message) {
   let data = JSON.parse(message.data);
   console.log(data);
-  //other.pos.x = data.other01.x;
-  //other.pos.y = data.other01.y;
-  //other.pos.z = data.other01.z;
+  playerID = data.id;
+  for (i = 0; i < data.player.length; i++) {
+    playerPos[i][0] = data.player[i].x;
+    playerPos[i][1] = data.player[i].y;
+    playerPos[i][2] = data.player[i].z;
+  }
+
+  if (data.item) {
+    itemPos = data.item.pos;
+  }
+  console.log(itemPos);
 }
 
-function sendPos(pos) {
-  let posArr = [pos.x, pos.y, pos.z];
-  let data = JSON.stringify(posArr)
-  connection.send(data);
-  console.log(data);
+function sendMessage(pos, get) {
+  let message = `{ "pos": [${pos.x}, ${pos.y}, ${pos.z}]`;
+  if (get >= 0) {
+    message += `, "get": ${get}`;
+  }
+  message += '}';
+  connection.send(message);
 }

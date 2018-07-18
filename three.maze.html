@@ -49,6 +49,26 @@ function init() {
   InitMap();
 
   // create item
+  let item = [];
+  for (i = 0; i < itemPos.length; i++) {
+    switch (itemType[i]) {
+    case 0:
+      break;
+    case 1:
+      item[i] = (new JumpItem());
+      item[i].start(new THREE.Vector3(itemPos[i][0], itemPos[i][1], itemPos[i][2]));
+      break;
+    case 2:
+      item[i] = (new SpeedItem());
+      item[i].start(new THREE.Vector3(itemPos[i][0], itemPos[i][1], itemPos[i][2]));
+      break;
+    case 3:
+      item[i] = (new MapItem());
+      item[i].start(new THREE.Vector3(itemPos[i][0], itemPos[i][1], itemPos[i][2]));
+      break;
+    }
+  }
+  /*
   let jumpitem = new JumpItem();
   jumpitem.start(new THREE.Vector3(152, 2, 15));
 
@@ -57,16 +77,20 @@ function init() {
 
   let speeditem = new SpeedItem();
   speeditem.start(new THREE.Vector3(168, 2, 7));
+  */
 
   // create player
   let player = new Player();
-  player.start(new THREE.Vector3(playerPos[0], playerPos[1], playerPos[2]));
-
-  // create other player
   let other = new Array(3);
-  for (i = 0; i < other.length; i++) {
-    other[i] = new Other();
-    other[i].start(new THREE.Vector3(otherPos[i][0], otherPos[i][1], otherPos[i][2]));
+  let cnt = 0;
+  for (i = 0; i < 4; i++) {
+    if (i == playerID) {
+      player.start(new THREE.Vector3(playerPos[playerID][0], playerPos[playerID][1], playerPos[playerID][2]));
+    } else {
+      other[cnt] = new Other();
+      other[cnt].start(new THREE.Vector3(playerPos[cnt][0], playerPos[cnt][1], playerPos[cnt][2]));
+      cnt++;
+    }
   }
 
   // create floor
@@ -83,6 +107,18 @@ function init() {
   function tick() {
     minimap.update(player.pos);
     minimap.clearMiniMap();
+
+    let cnt = 0;
+    for (i = 0; i < 4; i++) {
+      if (i == playerID) {
+        continue;
+      }
+      other[cnt].pos.x = playerPos[i][0];
+      other[cnt].pos.y = playerPos[i][1];
+      other[cnt].pos.z = playerPos[i][2];
+      cnt++;
+    }
+
     for (let obj of GameObjectTbl) {
       obj.update();
       player.hitCheck(obj);
@@ -99,7 +135,7 @@ function init() {
     requestAnimationFrame(tick);
 
     // send server
-    sendPos(player.pos);
+    sendMessage(player.pos, player.get);
   }
 }
 </script>
