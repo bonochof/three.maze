@@ -11,8 +11,9 @@ class Player extends GameObject {
     this.sphere = new THREE.Sphere( new THREE.Vector3( 0, 0, 0 ), 2);
     this.oldPos =this.pos.clone();
     this.y_speed = 0;
-    this.jumpCount = 1;
-    this.mapCount = 0;
+    this.jumpCount = 1000;
+    this.mapCount = 10000000000;
+    this.getItem = -1;
   }
 
   start(pos) {
@@ -39,6 +40,8 @@ class Player extends GameObject {
     const LEFT_TURN_KEY = 65;   // A
     const RIGHT_TURN_KEY = 68;  // D
     const JUMP_KEY = 74;        // J
+
+    this.getItem = -1;
 
     let currentPos = this.pos.clone();
     if (this.input_key.isDown(FORWARD_KEY)) {
@@ -97,6 +100,9 @@ class Player extends GameObject {
     let length = nearPoint.distanceTo(this.pos);
     if (length < this.sphere.radius) {
       obj.onHit(this, nearPoint);
+      if (obj.objID == ITEM) {
+        this.getItem = obj.itemID;
+      }
     }
   }
 }
