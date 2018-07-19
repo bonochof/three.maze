@@ -38,7 +38,7 @@ class MapItem extends GameObject {
     } else {
       this.get();
       player.mapCount = 3000;
-      sendMessage(player.pos, this.itemID);
+      sendGet(this.itemID);
     }
   }
 

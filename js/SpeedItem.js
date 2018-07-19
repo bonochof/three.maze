@@ -38,7 +38,7 @@ class SpeedItem extends GameObject {
     } else {
       this.get();
       player.move_speed += 0.2;
-      sendMessage(player.pos, this.itemID);
+      sendGet(this.itemID);
     }
   }
 

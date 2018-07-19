@@ -141,8 +141,8 @@ function init() {
     renderer.render(scene, camera);
     requestAnimationFrame(tick);
 
-    // send server
-    sendMessage(player.pos, player.getItem);
+    // send position to server
+    sendPos(player.pos);
   }
 }
 </script>

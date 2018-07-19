@@ -47,11 +47,12 @@ function onMessage(message) {
   console.log(itemPos);
 }
 
-function sendMessage(pos, get) {
-  let message = `{ "pos": [${pos.x}, ${pos.y}, ${pos.z}]`;
-  if (get >= 0) {
-    message += `, "get": ${get}`;
-  }
-  message += '}';
+function sendPos(pos) {
+  let message = `{ "pos": [${pos.x}, ${pos.y}, ${pos.z}] }`;
+  connection.send(message);
+}
+
+function sendGet(id) {
+  let message = `{ "get": ${id} }`;
   connection.send(message);
 }
