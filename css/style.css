@@ -1,7 +1,7 @@
-div#game {
+div.game {
   float: left;
 }
 
-div#chat {
+div.chat {
   float: right;
 }

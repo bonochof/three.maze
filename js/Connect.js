@@ -74,6 +74,7 @@ function sendGet(id) {
 
 function sendChat() {
   let content = document.getElementById("chat").value;
-  let message = `{ "chat": { "id": ${playerID}, "content": ${content} } }`;
+  let message = `{ "chat": { "id": ${playerID}, "content": "${content}" } }`;
   connection.send(message);
+  console.log(message);
 }
