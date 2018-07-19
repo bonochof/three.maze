@@ -54,6 +54,12 @@ function onMessage(message) {
   if (data.get) {
     getItemID = data.get;
   }
+
+  // chat
+  if (data.chat) {
+    let content = data.chat.id + ": " + data.chat.content;
+    document.getElementById("text").innerHTML = content;
+  }
 }
 
 function sendPos(pos) {
@@ -66,7 +72,8 @@ function sendGet(id) {
   connection.send(message);
 }
 
-function sendChat(content) {
+function sendChat() {
+  let content = document.getElementById("chat").value;
   let message = `{ "chat": { "id": ${playerID}, "content": ${content} } }`;
   connection.send(message);
 }
