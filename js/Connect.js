@@ -65,3 +65,8 @@ function sendGet(id) {
   let message = `{ "get": ${id} }`;
   connection.send(message);
 }
+
+function sendChat(content) {
+  let message = `{ "chat": { "id": ${playerID}, "content": ${content} } }`;
+  connection.send(message);
+}
