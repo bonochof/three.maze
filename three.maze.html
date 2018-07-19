@@ -50,37 +50,7 @@ function init() {
   InitMap();
 
   // create item
-  let item = [];
-  for (i = 0; i < itemPos.length; i++) {
-    switch (itemType[i]) {
-    case 0:
-      item[i] = new Goal();
-      item[i].start(new THREE.Vector3(itemPos[i][0], itemPos[i][1], itemPos[i][2]));
-      break;
-    case 1:
-      item[i] = new JumpItem();
-      item[i].start(new THREE.Vector3(itemPos[i][0], itemPos[i][1], itemPos[i][2]));
-      break;
-    case 2:
-      item[i] = new SpeedItem();
-      item[i].start(new THREE.Vector3(itemPos[i][0], itemPos[i][1], itemPos[i][2]));
-      break;
-    case 3:
-      item[i] = new MapItem();
-      item[i].start(new THREE.Vector3(itemPos[i][0], itemPos[i][1], itemPos[i][2]));
-      break;
-    }
-  }
-  /*
-  let jumpitem = new JumpItem();
-  jumpitem.start(new THREE.Vector3(152, 2, 15));
-
-  let mapitem = new MapItem();
-  mapitem.start(new THREE.Vector3(106, 2, 34));
-
-  let speeditem = new SpeedItem();
-  speeditem.start(new THREE.Vector3(168, 2, 7));
-  */
+  let item = new Array();
 
   // create player
   let player = new Player();
@@ -108,6 +78,28 @@ function init() {
 
   // one frame process
   function tick() {
+    if (itemFlag) {
+      for (i = 0; i < itemPos.length; i++) {
+        switch (itemType[i]) {
+        case 0:
+          item[i] = new Goal();
+          break;
+        case 1:
+          item[i] = new JumpItem();
+          break;
+        case 2:
+          item[i] = new SpeedItem();
+          break;
+        case 3:
+          item[i] = new MapItem();
+          break;
+        }
+        item[i].start(new THREE.Vector3(itemPos[i][0], itemPos[i][1], itemPos[i][2]));
+        item[i].itemID = itemType[i];
+      }
+      itemFlag = false;
+    }
+
     // item get process
     if (getItemID >= 0) {
       item[getItemID].get();

@@ -4,6 +4,7 @@ var playerID = 0;
 var playerPos = [[0, 4, 0], [0, 4, 0], [0, 4, 0], [0, 4, 0]];
 var itemType = new Array();
 var itemPos = new Array();
+var itemFlag = false;
 var getItemID = -1;
 
 connection.onopen = onOpen;
@@ -25,26 +26,34 @@ function onError(error) {
 
 function onMessage(message) {
   let data = JSON.parse(message.data);
-  console.log(data);
-  playerID = data.id;
-  for (i = 0; i < data.player.length; i++) {
-    playerPos[i][0] = data.player[i].x;
-    playerPos[i][1] = data.player[i].y;
-    playerPos[i][2] = data.player[i].z;
-  }
+  //console.log(data);
 
-  if (data.item) {
-    for (i = 0; i < data.item.length; i++) {
-      itemType[i] = data.item.id;
-      itemPos[i] = data.item.pos;
+  // id
+  playerID = data.id;
+
+  // player
+  if (data.player) {
+    for (i = 0; i < data.player.length; i++) {
+      playerPos[i][0] = data.player[i].x;
+      playerPos[i][1] = data.player[i].y;
+      playerPos[i][2] = data.player[i].z;
     }
   }
 
+  // item
+  if (data.item) {
+    itemFlag = true;
+    for (i = 0; i < data.item.length; i++) {
+      itemType[i] = data.item[i].type;
+      itemPos[i] = data.item[i].pos;
+    }
+  }
+
+  // get
   getItemID = -1;
   if (data.get) {
     getItemID = data.get;
   }
-  console.log(itemPos);
 }
 
 function sendPos(pos) {
