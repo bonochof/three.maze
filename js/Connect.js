@@ -57,8 +57,9 @@ function onMessage(message) {
 
   // chat
   if (data.chat) {
-    let content = data.chat.id + ": " + data.chat.content;
-    document.getElementById("text").innerHTML = content;
+    let content = document.getElementById("text");
+    let newContent = data.chat.id + ": " + data.chat.content + "<br>";
+    content.innerHTML = newContent + content.innerHTML;
   }
 }
 
