@@ -33,7 +33,10 @@ function onMessage(message) {
   }
 
   if (data.item) {
-    itemPos = data.item.pos;
+    for (i = 0; i < data.item.length; i++) {
+      itemType[i] = data.item.id;
+      itemPos[i] = data.item.pos;
+    }
   }
   console.log(itemPos);
 }
