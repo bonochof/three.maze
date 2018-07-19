@@ -4,6 +4,7 @@ var playerID = 0;
 var playerPos = [[0, 4, 0], [0, 4, 0], [0, 4, 0], [0, 4, 0]];
 var itemType = new Array();
 var itemPos = new Array();
+var getItemID = -1;
 
 connection.onopen = onOpen;
 connection.onclose = onClose;
@@ -37,6 +38,11 @@ function onMessage(message) {
       itemType[i] = data.item.id;
       itemPos[i] = data.item.pos;
     }
+  }
+
+  getItemID = -1;
+  if (data.get) {
+    getItemID = data.get;
   }
   console.log(itemPos);
 }

@@ -107,6 +107,11 @@ function init() {
 
   // one frame process
   function tick() {
+    // item get process
+    if (getItemID >= 0) {
+      item[getItemID].get();
+    }
+
     minimap.update(player.pos);
     minimap.clearMiniMap();
 
