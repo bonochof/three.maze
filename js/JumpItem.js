@@ -38,6 +38,7 @@ class JumpItem extends GameObject {
     } else {
       this.get();
       player.jumpCount += 3;
+      sendMessage(player.pos, this.itemID);
     }
   }
 
