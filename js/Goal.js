@@ -37,7 +37,7 @@ class Goal extends GameObject {
       return;
     } else {
       this.get();
-      sendMessage(player.pos, this.itemID);
+      sendGet(this.itemID);
     }
   }
 
