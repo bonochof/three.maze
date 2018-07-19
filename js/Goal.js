@@ -2,6 +2,7 @@ class Goal extends GameObject {
   constructor() {
     super();
     this.objID = ITEM;
+    this.itemID = 0;
     this.isGot = false;
     this.isVisible = true;
     this.mesh = new THREE.Mesh(
@@ -32,6 +33,17 @@ class Goal extends GameObject {
 
   // get effect
   onHit(player, hitPoint) {
-    //player.isGoal = true;
+    if (this.isGot) {
+      return;
+    } else {
+      this.get();
+      sendMessage(player.pos, this.itemID);
+    }
+  }
+
+  get() {
+    this.mesh.visible = false;
+    this.isVisible = false;
+    this.isGot = true;
   }
 }
