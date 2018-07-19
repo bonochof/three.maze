@@ -6,6 +6,7 @@ var itemType = new Array();
 var itemPos = new Array();
 var itemFlag = false;
 var getItemID = -1;
+var getPlayerID = true;
 
 connection.onopen = onOpen;
 connection.onclose = onClose;
@@ -29,7 +30,11 @@ function onMessage(message) {
   //console.log(data);
 
   // id
-  playerID = data.id;
+  if (data.id && getPlayerID) {
+    playerID = data.id;
+    document.getElementById("playerID").innerHTML = playerID;
+    getPlayerID = false;
+  }
 
   // player
   if (data.player) {
@@ -58,7 +63,7 @@ function onMessage(message) {
   // chat
   if (data.chat) {
     let content = document.getElementById("text");
-    let newContent = data.chat.id + ": " + data.chat.content + "<br>";
+    let newContent = "Player" + data.chat.id + ": " + data.chat.content + "<br>";
     content.innerHTML = newContent + content.innerHTML;
   }
 }
@@ -77,5 +82,4 @@ function sendChat() {
   let content = document.getElementById("chat").value;
   let message = `{ "chat": { "id": ${playerID}, "content": "${content}" } }`;
   connection.send(message);
-  console.log(message);
 }
