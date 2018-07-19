@@ -53,17 +53,19 @@ function init() {
   for (i = 0; i < itemPos.length; i++) {
     switch (itemType[i]) {
     case 0:
+      item[i] = new Goal();
+      item[i].start(new THREE.Vector3(itemPos[i][0], itemPos[i][1], itemPos[i][2]));
       break;
     case 1:
-      item[i] = (new JumpItem());
+      item[i] = new JumpItem();
       item[i].start(new THREE.Vector3(itemPos[i][0], itemPos[i][1], itemPos[i][2]));
       break;
     case 2:
-      item[i] = (new SpeedItem());
+      item[i] = new SpeedItem();
       item[i].start(new THREE.Vector3(itemPos[i][0], itemPos[i][1], itemPos[i][2]));
       break;
     case 3:
-      item[i] = (new MapItem());
+      item[i] = new MapItem();
       item[i].start(new THREE.Vector3(itemPos[i][0], itemPos[i][1], itemPos[i][2]));
       break;
     }
