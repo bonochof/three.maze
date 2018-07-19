@@ -11,8 +11,8 @@ class Player extends GameObject {
     this.sphere = new THREE.Sphere( new THREE.Vector3( 0, 0, 0 ), 2);
     this.oldPos =this.pos.clone();
     this.y_speed = 0;
-    this.jumpCount = 1000;
-    this.mapCount = 10000000000;
+    this.jumpCount = 100;
+    this.mapCount = 10000;
     this.getItem = -1;
   }
 
