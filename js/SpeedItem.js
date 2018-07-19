@@ -36,10 +36,14 @@ class SpeedItem extends GameObject {
     if (this.isGot) {
       return;
     } else {
-      this.mesh.visible = false;
-      this.isVisible = false;
+      this.get();
       player.move_speed += 0.2;
-      this.isGot = true;
     }
+  }
+
+  get() {
+    this.mesh.visible = false;
+    this.isVisible = false;
+    this.isGot = true;
   }
 }

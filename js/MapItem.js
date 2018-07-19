@@ -36,11 +36,15 @@ class MapItem extends GameObject {
     if (this.isGot) {
       return;
     } else {
-      this.mesh.visible = false;
-      this.isVisible = false;
+      this.get();
       player.mapCount = 3000;
-      this.isGot = true;
       sendMessage(player.pos, this.itemID);
     }
+  }
+
+  get() {
+    this.mesh.visible = false;
+    this.isVisible = false;
+    this.isGot = true;
   }
 }

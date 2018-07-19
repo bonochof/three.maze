@@ -36,10 +36,14 @@ class JumpItem extends GameObject {
     if (this.isGot) {
       return;
     } else {
-      this.mesh.visible = false;
-      this.isVisible = false;
+      this.get();
       player.jumpCount += 3;
-      this.isGot = true;
     }
+  }
+
+  get() {
+    this.mesh.visible = false;
+    this.isVisible = false;
+    this.isGot = true;
   }
 }
