@@ -13,7 +13,6 @@ class Player extends GameObject {
     this.y_speed = 0;
     this.jumpCount = 100;
     this.mapCount = 10000;
-    this.getItem = -1;
   }
 
   start(pos) {
@@ -40,8 +39,6 @@ class Player extends GameObject {
     const LEFT_TURN_KEY = 65;   // A
     const RIGHT_TURN_KEY = 68;  // D
     const JUMP_KEY = 74;        // J
-
-    this.getItem = -1;
 
     let currentPos = this.pos.clone();
     if (this.input_key.isDown(FORWARD_KEY)) {
@@ -100,9 +97,6 @@ class Player extends GameObject {
     let length = nearPoint.distanceTo(this.pos);
     if (length < this.sphere.radius) {
       obj.onHit(this, nearPoint);
-      if (obj.objID == ITEM) {
-        this.getItem = obj.itemID;
-      }
     }
   }
 }
