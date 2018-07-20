@@ -1,10 +1,17 @@
-var connection = new WebSocket("ws://10.75.129.60:2794", "rust-websocket");
-var initFlag = true;
-var playerID = 0;
+var connection = new WebSocket("ws://10.75.133.217:2794", "rust-websocket");
+
+// receive positions
 var playerPos = [[0, 4, 0], [0, 4, 0], [0, 4, 0], [0, 4, 0]];
+var mapPos = new Array();
 var itemType = new Array();
 var itemPos = new Array();
+
+// receive flags
+var mapFlag = false;
 var itemFlag = false;
+
+// receive IDs
+var playerID = 0;
 var getItemID = -1;
 var getPlayerID = true;
 
@@ -27,13 +34,21 @@ function onError(error) {
 
 function onMessage(message) {
   let data = JSON.parse(message.data);
-  //console.log(data);
+  console.log(data);
 
   // id
-  if (data.id && getPlayerID) {
+  if (data.id !== undefined && getPlayerID) {
     playerID = data.id;
-    document.getElementById("playerID").innerHTML = playerID;
+    document.getElementById("playerID").innerHTML = playerID.toString();
     getPlayerID = false;
+  }
+
+  // map
+  if (data.map) {
+    mapFlag = true;
+    for (i = 0; i < data.map.length; i++) {
+      mapPos[i] = data.map[i];
+    }
   }
 
   // player

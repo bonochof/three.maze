@@ -47,9 +47,6 @@ function init() {
   const light2 = new THREE.HemisphereLight(0x888888, 0x0000FF, 1.0);
   scene.add(light2);
 
-  // initialize map
-  InitMap();
-
   // create item
   let item = new Array();
 
@@ -79,6 +76,10 @@ function init() {
 
   // one frame process
   function tick() {
+    if (mapFlag) {
+      initMap();
+    }
+
     if (itemFlag) {
       for (i = 0; i < itemPos.length; i++) {
         switch (itemType[i]) {
