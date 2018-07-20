@@ -34,7 +34,7 @@ function onError(error) {
 
 function onMessage(message) {
   let data = JSON.parse(message.data);
-  console.log(data);
+  //console.log(data);
 
   // id
   if (data.id !== undefined && getPlayerID) {
