@@ -81,6 +81,7 @@ function onMessage(message) {
     let content = document.getElementById("text");
     let newContent = "Player" + data.chat.id + ": " + data.chat.content + "<br>";
     content.innerHTML = newContent + content.innerHTML;
+    document.getElementById("chat").value = "";
   }
 }
 
