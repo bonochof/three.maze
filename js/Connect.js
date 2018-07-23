@@ -1,4 +1,4 @@
-var connection = new WebSocket("ws://192.168.2.110:2794", "rust-websocket");
+var connection = new WebSocket("ws://10.75.140.109:2794", "rust-websocket");
 
 // receive positions
 var playerPos = [[0, 4, 0], [0, 4, 0], [0, 4, 0], [0, 4, 0]];

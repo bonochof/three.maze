@@ -136,11 +136,11 @@ function init() {
 
       // rendering
       renderer.render(scene, camera);
-      requestAnimationFrame(tick);
 
       // send position to server
       sendPos(player.pos);
     }
+    requestAnimationFrame(tick);
   }
 }
 </script>
